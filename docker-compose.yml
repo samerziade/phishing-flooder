@@ -1,0 +1,14 @@
+version: "3.6"
+
+services:
+  app:
+    image: node:10-alpine
+    volumes:
+      - ./.babelrc:/var/app/.babelrc
+      - ./package.json:/var/app/package.json
+      - ./config.js:/var/app/config.js
+      - ./app.js:/var/app/app.js
+      - ./schemas:/var/app/schemas
+      - ./src:/var/app/src
+    working_dir: /var/app
+    command: npm run docker

@@ -13,6 +13,7 @@
   "main": "app.js",
   "scripts": {
     "start": "babel-node app.js",
+    "docker": "npm install --quiet && npm start",
     "flow": "flow"
   },
   "dependencies": {
