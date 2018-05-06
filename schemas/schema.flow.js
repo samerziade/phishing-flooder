@@ -3,7 +3,7 @@
 type Url = string;
 
 type Connect = {
-  host: string,
+  hostname: string,
   port: 80 | 443,
   path: string
 };
