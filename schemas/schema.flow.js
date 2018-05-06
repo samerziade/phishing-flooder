@@ -8,16 +8,7 @@ type Connect = {
   path: string
 };
 
-type HttpMethod =
-  | 'GET'
-  | 'HEAD'
-  | 'POST'
-  | 'PUT'
-  | 'DELETE'
-  | 'CONNECT'
-  | 'OPTIONS'
-  | 'TRACE'
-  | 'PATCH';
+type HttpMethod = 'GET' | 'POST' | 'PUT';
 
 type HttpHeaders = {
   [header: string]: string
