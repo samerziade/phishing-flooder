@@ -1,0 +1,37 @@
+{
+  "name": "respammer",
+  "author": {
+    "name": "Samer Ziade",
+    "url": "https://samer.io"
+  },
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/samerziade/respammer.git"
+  },
+  "main": "app.js",
+  "scripts": {
+    "start": "babel-node app.js",
+    "flow": "flow"
+  },
+  "dependencies": {
+    "babel-cli": "6.26.0",
+    "babel-polyfill": "6.26.0",
+    "babel-preset-env": "1.6.1",
+    "babel-preset-flow": "6.23.0",
+    "eslint": "4.19.1",
+    "flow-bin": "0.71.0",
+    "random-useragent": "0.3.1"
+  },
+  "prettier": {
+    "printWidth": 80,
+    "parser": "flow",
+    "tabWidth": 2,
+    "useTabs": false,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": false,
+    "bracketSpacing": true,
+    "arrowParens": "avoid"
+  }
+}

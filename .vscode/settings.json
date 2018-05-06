@@ -1,0 +1,5 @@
+{
+    "window.zoomLevel": 0,
+    "flow.pathToFlow": "${workspaceRoot}/node_modules/.bin/flow",
+    "javascript.validate.enable": false
+}
