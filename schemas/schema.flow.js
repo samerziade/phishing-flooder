@@ -2,7 +2,7 @@
 
 type Connect = {
   hostname: string,
-  port: 80 | 443,
+  port: number,
   path: string
 };
 
