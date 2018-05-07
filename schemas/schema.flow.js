@@ -1,7 +1,5 @@
 // @flow
 
-type Url = string;
-
 type Connect = {
   hostname: string,
   port: 80 | 443,
