@@ -1,7 +1,7 @@
 // @flow
 
 import fs from 'fs';
-import Config from '../../config';
+import Config from '../config';
 
 import type { DataSchema } from '../../schemas/schema.flow';
 
