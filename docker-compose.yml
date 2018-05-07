@@ -11,4 +11,4 @@ services:
       - ./schemas:/var/app/schemas
       - ./src:/var/app/src
     working_dir: /var/app
-    command: npm run docker
+    command: npm run docker --silent

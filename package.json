@@ -1,5 +1,6 @@
 {
   "name": "respammer",
+  "description": "A program used to submit bogus data to phishing links",
   "author": {
     "name": "Samer Ziade",
     "url": "https://samer.io"
@@ -13,7 +14,7 @@
   "main": "app.js",
   "scripts": {
     "start": "babel-node app.js",
-    "docker": "npm install --quiet && npm start",
+    "docker": "npm install --quiet --no-optional --no-shrinkwrap --no-package-lock && npm start --silent",
     "flow": "flow"
   },
   "dependencies": {
