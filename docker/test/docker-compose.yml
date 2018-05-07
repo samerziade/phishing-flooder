@@ -1,0 +1,9 @@
+version: "3.6"
+
+services:
+  app:
+    image: richarvey/nginx-php-fpm
+    volumes:
+      - ./index.php:/var/www/html/index.php
+    ports:
+      - "8080:80"
