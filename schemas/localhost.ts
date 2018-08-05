@@ -1,5 +1,3 @@
-// @flow
-
 import { DataSchema } from './schema';
 
 const schema: DataSchema = {
