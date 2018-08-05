@@ -1,5 +1,3 @@
-// @flow
-
 import send from './src/Client';
 import getSchemas from './src/SchemaLoader';
 

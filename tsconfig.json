@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "sourceMap": false,
+    "outFile": "dist/app.js"
+  },
+  "inlucde": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

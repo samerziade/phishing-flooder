@@ -1,6 +1,6 @@
 // @flow
 
-import type { DataSchema } from './schema.flow';
+import { DataSchema } from './schema';
 
 const schema: DataSchema = {
   connect: {
@@ -41,4 +41,4 @@ const schema: DataSchema = {
   ]
 };
 
-export default (schema: DataSchema);
+export default schema;

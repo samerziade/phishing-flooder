@@ -1,6 +1,6 @@
 // @flow
 
-import type { DataSchema } from './schema.flow';
+import { DataSchema } from './schema';
 
 const schema: DataSchema = {
   connect: {
@@ -14,7 +14,7 @@ const schema: DataSchema = {
 
     headers: {
       Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-      "Accept-Encoding": "gzip, deflate",
+      'Accept-Encoding': 'gzip, deflate',
       'Accept-Language': 'en',
       'Cache-Control': 'no-cache',
       Connection: 'close',
@@ -53,4 +53,4 @@ const schema: DataSchema = {
   ]
 };
 
-export default (schema: DataSchema);
+export default schema;
