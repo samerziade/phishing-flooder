@@ -13,6 +13,7 @@
   },
   "main": "app.ts",
   "scripts": {
+    "start": "npm run dev",
     "dev": "./node_modules/.bin/ts-node app.ts",
     "build": "./node_modules/.bin/tsc app.ts",
     "eslint:init": "./node_modules/.bin/eslint --init",
