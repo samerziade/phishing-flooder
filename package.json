@@ -1,6 +1,6 @@
 {
-  "name": "respammer",
-  "description": "A program used to submit bogus data to phishing links",
+  "name": "data-flooder",
+  "description": "A program used to flood data to phishing sites",
   "author": {
     "name": "Samer Ziade",
     "url": "https://samer.io"
