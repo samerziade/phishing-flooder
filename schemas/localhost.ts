@@ -35,6 +35,24 @@ const schema: DataSchema = {
       max: 64,
       set:
         '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ`~!@#$%^&*()_+[{]}|;:",<.>?'
+    },
+    {
+      name: 'access_number',
+      type: 'string',
+      min: 16,
+      max: 16,
+      set: '0123456789'
+    },
+    {
+      name: 'textfield2'
+    },
+    {
+      name: 'button',
+      value: 'Login'
+    },
+    {
+      name: 'login_submitted',
+      value: '1'
     }
   ]
 };
