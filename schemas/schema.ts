@@ -1,21 +1,21 @@
-type Connect = {
+export type Connect = {
   hostname: string;
   port: number;
   path: string;
 };
 
-type HttpMethod = 'GET' | 'POST' | 'PUT';
+export type HttpMethod = 'GET' | 'POST' | 'PUT';
 
-type HttpHeaders = {
+export type HttpHeaders = {
   [header: string]: string;
 };
 
-type Http = {
+export type Http = {
   method: HttpMethod;
   headers: HttpHeaders;
 };
 
-type Schema = {
+export type Schema = {
   name: string;
   type?: string;
   min?: number;

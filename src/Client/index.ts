@@ -1,9 +1,9 @@
 import * as https from 'https';
 import * as http from 'http';
-import * as querystring from 'querystring';
 import * as agents from './agents';
-
-import { DataSchema } from '../../schemas/schema';
+import * as fields from './field';
+import * as querystring from 'querystring';
+import { DataSchema, Schema } from '../../schemas/schema';
 
 type Request = http.ClientRequest;
 
@@ -18,7 +18,7 @@ const createRequest = (config: DataSchema): Request => {
     : http.request(options);
 };
 
-const setupHeaders = (request: Request, config: DataSchema) => {
+const setupHeaders = (request: Request, config: DataSchema): void => {
   const { headers } = config.http;
 
   for (const key in headers) {
@@ -32,11 +32,13 @@ const setupHeaders = (request: Request, config: DataSchema) => {
   }
 };
 
-const setupRequestData = (request: Request, config: DataSchema) => {
-  const data = querystring.stringify({
-    user: 'user1234',
-    password: 'password1234'
+const setupRequestData = (request: Request, config: DataSchema): void => {
+  const reducer = (acc: Schema, curr: Schema) => ({
+    ...acc,
+    ...fields.getValue(curr)
   });
+
+  const data = querystring.stringify(config.schema.reduce(reducer, {}));
 
   if (data.trim() !== '') {
     request.setHeader('Content-Length', Buffer.byteLength(data).toString());
@@ -49,7 +51,7 @@ const setupRequestData = (request: Request, config: DataSchema) => {
   }
 };
 
-export default (config: DataSchema) => {
+export default (config: DataSchema): void => {
   const request = createRequest(config);
   setupHeaders(request, config);
   setupRequestData(request, config);
