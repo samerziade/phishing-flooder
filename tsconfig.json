@@ -1,15 +1,10 @@
 {
-  "compilerOptions": {
-    "noImplicitAny": true,
-    "removeComments": true,
-    "preserveConstEnums": true,
-    "sourceMap": false,
-    "outFile": "dist/app.js"
-  },
   "inlucde": [
+    "app.ts",
     "src/**/*"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "dist"
   ]
 }

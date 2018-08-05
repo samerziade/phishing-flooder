@@ -13,9 +13,7 @@
   },
   "main": "app.ts",
   "scripts": {
-    "start": "npm run dev",
-    "dev": "./node_modules/.bin/ts-node app.ts",
-    "build": "./node_modules/.bin/tsc app.ts",
+    "start": "./node_modules/.bin/ts-node app.ts",
     "eslint:init": "./node_modules/.bin/eslint --init",
     "docker": "npm install --quiet --no-optional --no-shrinkwrap --no-package-lock && npm start --silent"
   },
