@@ -9,7 +9,7 @@ const loadConfigs = () => {
   const files = fs.readdirSync(Config.dataDir);
   const basePath = `../../${Config.dataDir}`;
 
-  files.filter(file => file === 'localhost.ts').forEach(file => {
+  files.filter(file => file !== 'schema.ts').forEach(file => {
     configs.push(require(`${basePath}/${file}`).default);
   });
 };
