@@ -7,21 +7,21 @@ export type Field = {
 const defaultSet: string =
   '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ`~!@#$%^&*()_+[{]}|;:",<.>?';
 
-const getMin = (field: Schema): number => {
-  let min = 0;
+export const getMin = (field: Schema): number => {
+  let min = 8;
 
   if (field.hasOwnProperty('min') && field.min >= min) {
     min = field.min;
   }
 
   if (field.hasOwnProperty('max') && min > field.max) {
-    min = 0;
+    min = 8;
   }
 
   return min;
 };
 
-const getMax = (field: Schema): number => {
+export const getMax = (field: Schema): number => {
   let max = 128;
 
   if (field.hasOwnProperty('max') && field.max <= max) {
@@ -35,20 +35,20 @@ const getMax = (field: Schema): number => {
   return max;
 };
 
-const getRandomStringLength = (min: number, max: number): number => {
+export const getRandomStringLength = (min: number, max: number): number => {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
-const getRandomChar = (set: string): string => {
+export const getRandomChar = (set: string): string => {
   const min = 0;
   const max = set.length - 1;
 
   return set[getRandomStringLength(min, max)];
 };
 
-const getStringValue = (field: Schema): string => {
+export const getStringValue = (field: Schema): string => {
   const maxValueLength = getRandomStringLength(getMin(field), getMax(field));
   let set: string = defaultSet;
   let value: string = '';
