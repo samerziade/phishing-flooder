@@ -8,7 +8,7 @@ services:
       - ./.babelrc:/var/app/.babelrc
       - ./package.json:/var/app/package.json
       - ./config.ts:/var/app/config.ts
-      - ./app.js:/var/app/app.ts
+      - ./app.ts:/var/app/app.ts
       - ./schemas:/var/app/schemas
       - ./src:/var/app/src
     command: npm run docker --silent
