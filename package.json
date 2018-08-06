@@ -25,7 +25,6 @@
     "babel-preset-env": "1.7.0",
     "typescript": "3.0.1",
     "eslint": "4.19.1",
-    "eslint-config-airbnb-base": "13.0.0",
     "eslint-plugin-import": "2.13.0",
     "ts-node": "7.0.0"
   },
@@ -41,5 +40,17 @@
     "parser": "typescript",
     "requirePragma": false,
     "useTabs": false
+  },
+  "eslintConfig": {
+    "extends": [
+      "eslint:recommended"
+    ],
+    "env": {
+      "browser": false,
+      "node": true
+    },
+    "parserOptions": {
+      "ecmaVersion": 2018
+    }
   }
 }
