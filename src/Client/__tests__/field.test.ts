@@ -1,5 +1,5 @@
 import * as field from '../field';
-import { Schema } from '../../../schemas/schema';
+import { Schema } from '../../schema.types';
 
 export type Schema = {
   name: string;

@@ -1,8 +1,5 @@
 import send from './src/Client';
-import getSchemas from './src/SchemaLoader';
+import { DataSchema } from './src/schema.types';
 
-const configs = getSchemas();
-
-configs.forEach(config => {
-  send(config);
-});
+const config: DataSchema = require('./site.json');
+send(config);

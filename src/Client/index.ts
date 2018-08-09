@@ -3,7 +3,7 @@ import * as http from 'http';
 import * as agents from './agents';
 import * as fields from './field';
 import * as querystring from 'querystring';
-import { DataSchema, Schema } from '../../schemas/schema';
+import { DataSchema, Schema } from '../schema.types';
 
 type Request = http.ClientRequest;
 
