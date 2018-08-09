@@ -4,7 +4,7 @@
 
 ## Build Status
 
-[![CircleCI](https://circleci.com/gh/samerziade/respammer/tree/master.svg?style=svg)](https://circleci.com/gh/samerziade/respammer/tree/master)
+[![CircleCI](https://circleci.com/gh/samerziade/phishing-flooder/tree/master.svg?style=svg)](https://circleci.com/gh/samerziade/phishing-flooder/tree/master)
 
 ## Summary
 
