@@ -24,7 +24,7 @@ if (count($_POST) > 0) {
 
 <html>
   <head>
-    <title>ReSpammer Test</title>
+    <title>Test</title>
     <meta charset="utf-8" />
   </head>
 
