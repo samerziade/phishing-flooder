@@ -17,6 +17,7 @@
     "test": "./node_modules/.bin/jest",
     "test:watch": "./node_modules/.bin/jest --watch",
     "eslint:init": "./node_modules/.bin/eslint --init",
+    "build": "./node_modules/.bin/tsc --outDir ./build/ app.ts",
     "docker": "npm install --quiet --no-optional --no-shrinkwrap --no-package-lock && npm start --silent"
   },
   "devDependencies": {
