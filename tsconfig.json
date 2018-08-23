@@ -1,0 +1,10 @@
+{
+  "inlucde": [
+    "app.ts",
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}
