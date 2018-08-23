@@ -1,10 +1,6 @@
-# Phishing Flooder
+# Phishing Flooder [![CircleCI](https://circleci.com/gh/samerziade/phishing-flooder/tree/master.svg?style=svg)](https://circleci.com/gh/samerziade/phishing-flooder/tree/master)
 
 > **NOTE:** This project is still being development
-
-## Build Status
-
-[![CircleCI](https://circleci.com/gh/samerziade/phishing-flooder/tree/master.svg?style=svg)](https://circleci.com/gh/samerziade/phishing-flooder/tree/master)
 
 ## Summary
 
