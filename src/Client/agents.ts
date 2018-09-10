@@ -1,5 +1,5 @@
-import { strings } from './user-agents';
+import { strings } from './user-agents'
 
 export const getRandom = (): string => {
-  return strings[Math.floor(Math.random() * strings.length)];
-};
+  return strings[Math.floor(Math.random() * strings.length)]
+}

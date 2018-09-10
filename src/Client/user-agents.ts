@@ -1,4 +1,4 @@
-export type UserAgentStrings = Array<string>;
+export type UserAgentStrings = Array<string>
 
 export const strings: UserAgentStrings = [
   'Mozilla/1.22 (compatible; MSIE 10.0; Windows 3.1)',
@@ -899,5 +899,5 @@ export const strings: UserAgentStrings = [
   'Opera/9.80 (X11; Linux x86_64; U; en-GB) Presto/2.2.15 Version/10.01',
   'Opera/9.80 (X11; Linux x86_64; U; it) Presto/2.2.15 Version/10.10',
   'Opera/9.80 (X11; Linux x86_64; U; pl) Presto/2.7.62 Version/11.00',
-  'Opera/9.80 (X11; U; Linux i686; en-US; rv:1.9.2.3) Presto/2.2.15 Version/10.10'
-];
+  'Opera/9.80 (X11; U; Linux i686; en-US; rv:1.9.2.3) Presto/2.2.15 Version/10.10',
+]
