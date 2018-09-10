@@ -22,8 +22,6 @@
   "devDependencies": {
     "@types/jest": "23.3.1",
     "@types/node": "10.7.1",
-    "eslint": "4.19.1",
-    "eslint-plugin-import": "2.14.0",
     "jest": "23.5.0",
     "ts-jest": "23.1.4",
     "ts-node": "7.0.1",
@@ -41,18 +39,6 @@
     "parser": "typescript",
     "requirePragma": false,
     "useTabs": false
-  },
-  "eslintConfig": {
-    "extends": [
-      "eslint:recommended"
-    ],
-    "env": {
-      "browser": false,
-      "node": true
-    },
-    "parserOptions": {
-      "ecmaVersion": 2018
-    }
   },
   "jest": {
     "transform": {
