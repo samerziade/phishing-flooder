@@ -1,4 +1,7 @@
 {
+  "compilerOptions": {
+    "lib": [ "es2015" ]
+  },
   "inlucde": [
     "app.ts",
     "src/**/*"
