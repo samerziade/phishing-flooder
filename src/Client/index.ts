@@ -57,7 +57,6 @@ export default (config: DataSchema): void => {
   setupRequestData(request, config)
 
   request.on('response', (res: http.IncomingMessage) => {
-    const { headers, statusCode } = res
     let data = ''
 
     res.on('data', chunk => {
