@@ -1,4 +1,4 @@
-import { Schema } from '../schema.types'
+import { Schema } from '../config'
 
 export type Field = {
   [field: string]: string
