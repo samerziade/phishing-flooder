@@ -1,4 +1,4 @@
 node_modules
 package-lock.json
-config.json
-build
+src/app.config.json
+docker/app/build
