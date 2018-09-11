@@ -1,17 +1,17 @@
 import send from './Client'
 import { config } from './config'
 
-const { runCount, interval } = config.application
-let count = 0
+const { count, interval } = config.application
+let counter = 0
 
 const timer = setInterval(async () => {
-  count++
+  counter++
 
   send(config)
     .then(data => console.info(data))
     .catch(err => console.error(err))
 
-  if (runCount > 0 && count === runCount) {
+  if (count > 0 && count === counter) {
     clearInterval(timer)
   }
 }, interval)

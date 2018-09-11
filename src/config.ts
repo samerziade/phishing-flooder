@@ -1,7 +1,7 @@
 export type HttpMethod = 'GET' | 'POST' | 'PUT'
 
 export interface Application {
-  runCount: number
+  count: number
   interval: number
 }
 
