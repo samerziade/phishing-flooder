@@ -3,7 +3,7 @@ import * as http from 'http'
 import * as agents from './agents'
 import * as fields from './field'
 import * as querystring from 'querystring'
-import { config, Config, Schema } from '../config'
+import { Config, Schema } from '../config'
 
 type Request = http.ClientRequest
 
