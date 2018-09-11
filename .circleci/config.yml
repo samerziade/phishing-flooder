@@ -1,62 +1,82 @@
 version: 2
 
 jobs:
-  setup-code:
+  setup:
     docker:
       - image: circleci/node:latest
     working_directory: ~/repo
     steps:
     - restore_cache:
         keys:
-          - build-{{ .Branch }}
-          - build-
+          - setup-{{ .Branch }}
+          - setup-
     - checkout
     - run: npm install --no-optional --no-shrinkwrap --no-package-lock
     - save_cache:
         paths:
           - ".git"
           - node_modules
-        key: build-{{ .Branch }}
+        key: setup-{{ .Branch }}
 
-  test-code:
+  test:
     docker:
       - image: circleci/node:latest
     working_directory: ~/repo
     steps:
     - restore_cache:
         keys:
-          - build-{{ .Branch }}
+          - setup-{{ .Branch }}
     - checkout
     - run: npm run test
 
-  build-code:
+  build:
     docker:
       - image: circleci/node:latest
     working_directory: ~/repo
     steps:
     - restore_cache:
         keys:
-          - build-{{ .Branch }}
+          - setup-{{ .Branch }}
     - checkout
     - run: npm run build
+    - save_cache:
+        paths:
+          - docker/app
+        key: build-{{ .Branch }}
 
-  # build-docker:
+  docker:
+    machine: true
+    working_directory: ~/repo
+    steps:
+      - setup_remote_docker
+      - restore_cache:
+          keys:
+            - build-{{ .Branch }}
+      - run:
+          name: Logging in to Docker
+          command: docker login -u $DOCKER_USER -p $DOCKER_PASS
+      - run: 
+          name: Building image
+          command: |
+            cd ~/repo/docker/app
+            docker build -t samerziadeh/phishing-flooder:latest .
+      - run:
+          name: Publishing image
+          command: docker image push samerziadeh/phishing-flooder
+
 
 workflows:
   version: 2
 
   setup-test-build-deploy:
     jobs:
-      - setup-code
-      - test-code:
+      - setup
+      - test:
           requires:
-            - setup-code
-      - build-code:
+            - setup
+      - build:
           requires:
-            - setup-code
-            - test-code
-      # - build-docker:
-      #     requires:
-      #       - setup-code
-      #       - test-code
-      #       - build-code
+            - test
+      - docker:
+          requires:
+            - build
