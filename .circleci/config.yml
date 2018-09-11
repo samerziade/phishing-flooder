@@ -45,18 +45,18 @@ jobs:
 workflows:
   version: 2
 
-  setup_and_test:
+  setup-test-build-deploy:
     jobs:
       - setup-code
-      - test-code
-  build_code:
-    requires:
-      - setup_and_test
-    jobs:
-      - build-code
-  # build_docker:
-  #   requires:
-  #     - setup_and_test
-  #     - build_code
-  #   jobs:
-  #     - build-docker
+      - test-code:
+          requires:
+            - setup-code
+      - build-code:
+          requires:
+            - setup-code
+            - test-code
+      # - build-docker:
+      #     requires:
+      #       - setup-code
+      #       - test-code
+      #       - build-code
