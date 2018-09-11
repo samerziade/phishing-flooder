@@ -36,4 +36,11 @@ export interface Config {
   schema: Array<Schema>
 }
 
-export const config: Config = require('./app.config.json')
+const { env } = process
+
+if (!env.hasOwnProperty('APP_CONFIG_FILE') || !env.APP_CONFIG_FILE) {
+  console.error('Please set the APP_CONFIG_FILE environment variable')
+  process.exit(1)
+}
+
+export const config: Config = require(env.APP_CONFIG_FILE)
