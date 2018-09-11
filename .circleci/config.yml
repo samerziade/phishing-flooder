@@ -14,7 +14,6 @@ jobs:
       - run: npm install --no-optional --no-shrinkwrap --no-package-lock
       - save_cache:
           paths:
-            - ".git"
             - node_modules
           key: v1-setup-{{ checksum "package.json" }}
 
@@ -42,7 +41,7 @@ jobs:
       - save_cache:
           paths:
             - docker/app
-          key: v1-build-{{ .Branch }}
+          key: v1-build-{{ checksum "package.json" }}
 
   docker:
     machine: true
@@ -51,7 +50,6 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - v1-setup-{{ checksum "package.json" }}
             - v1-build-{{ checksum "package.json" }}
       - run:
           name: Logging in to Docker
