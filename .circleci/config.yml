@@ -59,6 +59,7 @@ jobs:
           command: |
             cd ~/repo/docker/app
             docker build -t samerziadeh/phishing-flooder:latest .
+            docker build -t samerziadeh/phishing-flooder:`grep '"version"' ~/repo/package.json | grep -Eo '\d+\.\d+\.\d+'` .
       - run:
           name: Publishing image
           command: docker image push samerziadeh/phishing-flooder
