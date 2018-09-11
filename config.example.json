@@ -1,4 +1,8 @@
 {
+  "application": {
+    "count": 0,
+    "interval": 0
+  },
   "connect": {
     "hostname": "localhost",
     "port": 8080,

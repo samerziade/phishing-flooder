@@ -1,5 +1,10 @@
 export type HttpMethod = 'GET' | 'POST' | 'PUT'
 
+export interface Application {
+  runCount: number
+  interval: number
+}
+
 export interface Connect {
   hostname: string
   port: number
@@ -24,8 +29,11 @@ export interface Schema {
   value?: string
 }
 
-export interface DataSchema {
+export interface Config {
+  application: Application
   connect: Connect
   http: Http
   schema: Array<Schema>
 }
+
+export const config: Config = require('../config.json')

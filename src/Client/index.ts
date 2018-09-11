@@ -3,11 +3,11 @@ import * as http from 'http'
 import * as agents from './agents'
 import * as fields from './field'
 import * as querystring from 'querystring'
-import { DataSchema, Schema } from '../schema.types'
+import { config, Config, Schema } from '../config'
 
 type Request = http.ClientRequest
 
-const createRequest = (config: DataSchema): Request => {
+const createRequest = (config: Config): Request => {
   const options = {
     ...config.connect,
     method: config.http.method,
@@ -18,7 +18,7 @@ const createRequest = (config: DataSchema): Request => {
     : http.request(options)
 }
 
-const setupHeaders = (request: Request, config: DataSchema): void => {
+const setupHeaders = (request: Request, config: Config): void => {
   const { headers } = config.http
 
   for (const key in headers) {
@@ -32,7 +32,7 @@ const setupHeaders = (request: Request, config: DataSchema): void => {
   }
 }
 
-const setupRequestData = (request: Request, config: DataSchema): void => {
+const setupRequestData = (request: Request, config: Config): void => {
   const reducer = (acc: Schema, curr: Schema) => ({
     ...acc,
     ...fields.getValue(curr),
@@ -51,22 +51,20 @@ const setupRequestData = (request: Request, config: DataSchema): void => {
   }
 }
 
-export default (config: DataSchema): void => {
-  const request = createRequest(config)
-  setupHeaders(request, config)
-  setupRequestData(request, config)
+export default async (config: Config): Promise<string> => {
+  return new Promise<string>((resolve, reject) => {
+    const request = createRequest(config)
+    setupHeaders(request, config)
+    setupRequestData(request, config)
 
-  request.on('response', (res: http.IncomingMessage) => {
-    let data = ''
-
-    res.on('data', chunk => {
-      data += chunk
+    request.on('response', (res: http.IncomingMessage) => {
+      let data = ''
+      res.on('data', chunk => (data += chunk))
+      res.on('error', () => reject('Error in response'))
+      res.on('end', () => resolve(data))
     })
 
-    res.on('end', () => {
-      console.log(data)
-    })
+    request.on('error', () => reject('Error in request'))
+    request.end()
   })
-
-  request.end()
 }

@@ -10,10 +10,36 @@ It works by sending submitting fake data to phishing links, and so far we have c
 
 ## Config
 
-Copy `site.example.json` to `site.json` and update configuration accordingly. The application is setup to read from that file, and Git will ignore it.
+Copy `config.example.json` to `config.json` and update configuration accordingly. The application is setup to read from that file, and Git will ignore it.
+
+Please refer to [config.ts](src/config.ts) for the type definitions of the configuration file, and [config.example.json](config.example.json) to see a list of all possible options.
+
+### Application Config
+
+| Key        | Type     | Description                                           |
+|------------|----------|-------------------------------------------------------|
+| `runCount` | `number` | Number of requests to send. Set to `0` to run forever |
+| `interval` | `number` | The time to wait between requests                     |
 
 ## Run
 
-```bash
+```shell
 npm start
+```
+
+### Sample Server
+
+If you'd like to run this against a test server, you can use the provided [docker-compose.yml](docker/test) file. The provided [config.example.json](config.example.json) file is configured to run using that server.
+
+```shell
+cd docker/test
+docker-compose up
+```
+
+## Test
+
+Test coverage is still not 100%, but will be be working on adding more as time permits.
+
+```shell
+npm run test
 ```
