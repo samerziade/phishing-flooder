@@ -50,6 +50,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
+            - v1-setup-{{ checksum "package.json" }}
             - v1-build-{{ checksum "package.json" }}
       - run:
           name: Logging in to Docker
