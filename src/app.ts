@@ -1,5 +1,5 @@
-import send from './src/Client'
-import { config } from './src/config'
+import send from './Client'
+import { config } from './config'
 
 const { runCount, interval } = config.application
 let count = 0
