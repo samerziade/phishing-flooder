@@ -8,15 +8,15 @@ jobs:
     steps:
     - restore_cache:
         keys:
-          - setup-{{ .Branch }}
-          - setup-
+          - v1-setup-{{ .Branch }}
+          - v1-setup-
     - checkout
     - run: npm install --no-optional --no-shrinkwrap --no-package-lock
     - save_cache:
         paths:
           - ".git"
           - node_modules
-        key: setup-{{ .Branch }}
+        key: v1-setup-{{ .Branch }}
 
   test:
     docker:
@@ -25,7 +25,7 @@ jobs:
     steps:
     - restore_cache:
         keys:
-          - setup-{{ .Branch }}
+          - v1-setup-{{ .Branch }}
     - checkout
     - run: npm run test
 
@@ -36,7 +36,7 @@ jobs:
     steps:
     - restore_cache:
         keys:
-          - setup-{{ .Branch }}
+          - v1-setup-{{ .Branch }}
     - checkout
     - run: npm run build
     - save_cache:
@@ -50,7 +50,7 @@ jobs:
     steps:
       - restore_cache:
           keys:
-            - build-{{ .Branch }}
+            - v1-build-{{ .Branch }}
       - run:
           name: Logging in to Docker
           command: docker login -u $DOCKER_USER -p $DOCKER_PASS
