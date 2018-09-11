@@ -60,11 +60,11 @@ export default async (config: Config): Promise<string> => {
     request.on('response', (res: http.IncomingMessage) => {
       let data = ''
       res.on('data', chunk => (data += chunk))
-      res.on('error', () => reject('Error in response'))
+      res.on('error', err => reject(`RESPONSE - ${err.name} - ${err.message}`))
       res.on('end', () => resolve(data))
     })
 
-    request.on('error', () => reject('Error in request'))
+    request.on('error', err => reject(`REQUEST - ${err.name} - ${err.message}`))
     request.end()
   })
 }

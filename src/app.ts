@@ -5,8 +5,11 @@ const { runCount, interval } = config.application
 let count = 0
 
 const timer = setInterval(async () => {
-  send(config).then(data => console.info(data))
   count++
+
+  send(config)
+    .then(data => console.info(data))
+    .catch(err => console.error(err))
 
   if (runCount > 0 && count === runCount) {
     clearInterval(timer)
