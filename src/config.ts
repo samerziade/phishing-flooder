@@ -36,4 +36,4 @@ export interface Config {
   schema: Array<Schema>
 }
 
-export const config: Config = require('../config.json')
+export const config: Config = require('./app.config.json')
