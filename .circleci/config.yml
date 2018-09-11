@@ -6,51 +6,53 @@ jobs:
       - image: circleci/node:latest
     working_directory: ~/repo
     steps:
-    - restore_cache:
-        keys:
-          - v1-setup-{{ .Branch }}
-          - v1-setup-
-    - checkout
-    - run: npm install --no-optional --no-shrinkwrap --no-package-lock
-    - save_cache:
-        paths:
-          - ".git"
-          - node_modules
-        key: v1-setup-{{ .Branch }}
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-setup-{{ checksum "package.json" }}
+            - v1-setup-
+      - run: npm install --no-optional --no-shrinkwrap --no-package-lock
+      - save_cache:
+          paths:
+            - ".git"
+            - node_modules
+          key: v1-setup-{{ checksum "package.json" }}
 
   test:
     docker:
       - image: circleci/node:latest
     working_directory: ~/repo
     steps:
-    - restore_cache:
-        keys:
-          - v1-setup-{{ .Branch }}
-    - checkout
-    - run: npm run test
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-setup-{{ checksum "package.json" }}
+      - run: npm run test
 
   build:
     docker:
       - image: circleci/node:latest
     working_directory: ~/repo
     steps:
-    - restore_cache:
-        keys:
-          - v1-setup-{{ .Branch }}
-    - checkout
-    - run: npm run build
-    - save_cache:
-        paths:
-          - docker/app
-        key: build-{{ .Branch }}
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-setup-{{ checksum "package.json" }}
+      - run: npm run build
+      - save_cache:
+          paths:
+            - docker/app
+          key: v1-build-{{ .Branch }}
 
   docker:
     machine: true
     working_directory: ~/repo
     steps:
+      - checkout
       - restore_cache:
           keys:
-            - v1-build-{{ .Branch }}
+            - v1-setup-{{ checksum "package.json" }}
+            - v1-build-{{ checksum "package.json" }}
       - run:
           name: Logging in to Docker
           command: docker login -u $DOCKER_USER -p $DOCKER_PASS
@@ -63,10 +65,8 @@ jobs:
           name: Publishing image
           command: docker image push samerziadeh/phishing-flooder
 
-
 workflows:
   version: 2
-
   setup-test-build-deploy:
     jobs:
       - setup
