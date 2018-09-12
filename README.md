@@ -6,9 +6,10 @@
 
 A program used to flood phishing links with bogus data in order to try to protect the real information from actual victims.
 
-### Docker
+## Docker
 
-You can find the built Docker image [here](https://hub.docker.com/r/samerziadeh/phishing-flooder/).
+* [Image](https://hub.docker.com/r/samerziadeh/phishing-flooder/)
+* [Dockerfile](docker/app/Dockerfile)
 
 ## Running Locally
 
