@@ -43,15 +43,11 @@
   },
   "jest": {
     "transform": {
-      "^.+\\.tsx?$": "ts-jest"
+      "^.+\\.ts$": "ts-jest"
     },
     "moduleFileExtensions": [
       "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json",
-      "node"
+      "js"
     ],
     "collectCoverageFrom": [
       "src/**/*.ts"
@@ -59,9 +55,6 @@
     "testMatch": [
       "<rootDir>/src/**/__tests__/*.test.ts"
     ],
-    "testEnvironment": "node",
-    "transformIgnorePatterns": [
-      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$"
-    ]
+    "testEnvironment": "node"
   }
 }
