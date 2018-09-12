@@ -39,13 +39,11 @@ const setupRequestData = (request: Request, config: Config): void => {
   })
 
   const data = querystring.stringify(config.schema.reduce(reducer, {}))
+  const { method } = config.http
 
-  if (data.trim() !== '') {
+  if (data.trim() !== '' && (method === 'POST' || method === 'PUT')) {
     request.setHeader('Content-Length', Buffer.byteLength(data).toString())
-
-    if (config.http.method === 'POST' || config.http.method === 'PUT') {
-      request.setHeader('Content-Type', 'application/x-www-form-urlencoded')
-    }
+    request.setHeader('Content-Type', 'application/x-www-form-urlencoded')
 
     request.write(data)
   }
