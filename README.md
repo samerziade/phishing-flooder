@@ -28,12 +28,12 @@ Please refer to [config.ts](src/config.ts) for the type definitions of the confi
 
 #### Log Levels
 
-| Value | Level   |
-|-------|---------|
-| `0`   | `OFF`   |
-| `1`   | `DEBUG` |
-| `2`   | `INFO`  |
-| `3`   | `ERROR` |
+| Value | Level |
+|-------|-------|
+| 0     | OFF   |
+| 1     | DEBUG |
+| 2     | INFO  |
+| 3     | ERROR |
 
 #### Test Web Server
 
