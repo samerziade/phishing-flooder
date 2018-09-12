@@ -1,8 +1,16 @@
 export type HttpMethod = 'GET' | 'POST' | 'PUT'
 
+export enum LogLevel {
+  OFF,
+  DEBUG,
+  INFO,
+  ERROR,
+}
+
 export interface Application {
   count: number
   interval: number
+  log: LogLevel
 }
 
 export interface Connect {

@@ -22,6 +22,16 @@ Please refer to [config.ts](src/config.ts) for the type definitions of the confi
 |------------|----------|-------------------------------------------------------|
 | `count`    | `number` | Number of requests to send. Set to `0` to run forever |
 | `interval` | `number` | The time to wait between requests                     |
+| `log`      | `number` | Numbers outlined in the next section                  |
+
+#### Log Levels
+
+| Value | Level   |
+|-------|---------|
+| `0`   | `OFF`   |
+| `1`   | `DEBUG` |
+| `2`   | `INFO`  |
+| `3`   | `ERROR` |
 
 #### Test Web Server
 
