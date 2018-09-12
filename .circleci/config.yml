@@ -42,6 +42,23 @@ jobs:
           paths:
             - docker/app
           key: v1-build-{{ checksum "package.json" }}
+  
+  tag:
+    docker:
+      - image: circleci/node:latest
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-setup-{{ checksum "package.json" }}
+      - run: 
+          name: Tagging release
+          command: |
+            git tag v`sed -n 's/^  "version"\: "\([[:digit:]]\+\.[[:digit:]]\+\.[[:digit:]]\+\)",$/\1/p' ~/repo/package.json`
+      - run:
+          name: Pushing tag
+          command: git push --tags
 
   docker:
     machine: true
@@ -75,6 +92,15 @@ workflows:
       - build:
           requires:
             - test
+      - tag:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
       - docker:
           requires:
             - build
+          filters:
+            branches:
+              only: master
