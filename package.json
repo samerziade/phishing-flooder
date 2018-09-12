@@ -18,8 +18,7 @@
     "test:watch": "jest --watch",
     "build": "npm run build:clean && npm run build:app",
     "build:clean": "rm -rf ./docker/app/build",
-    "build:app": "tsc --lib ES2015 --outDir ./docker/app/build/ src/app.ts",
-    "docker": "npm install --quiet --no-optional --no-shrinkwrap --no-package-lock && npm start --silent"
+    "build:app": "tsc --lib ES2015 --outDir ./docker/app/build/ src/app.ts"
   },
   "devDependencies": {
     "@types/jest": "23.3.2",
