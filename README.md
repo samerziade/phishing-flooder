@@ -12,7 +12,7 @@ It works by sending submitting fake data to phishing links, and so far we have c
 
 ### Config
 
-Copy `config.example.json` to `src/app.config.json` and update configuration accordingly. The application is setup to read from that file, and Git will ignore it.
+Copy `config.example.json` to `src/app.config.json` and update the configuration accordingly. The application is setup to read from that file, and Git will ignore it.
 
 Please refer to [config.ts](src/config.ts) for the type definitions of the configuration file, and [config.example.json](config.example.json) to see a list of all possible options.
 
