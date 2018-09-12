@@ -57,8 +57,7 @@ jobs:
             - v1-setup-{{ checksum "package.json" }}
       - run: 
           name: Tagging release
-          command: |
-            git tag v`sed -n 's/^  "version"\: "\([[:digit:]]\+\.[[:digit:]]\+\.[[:digit:]]\+\)",$/\1/p' ~/repo/package.json`
+          command: git tag v`sed -n 's/^  "version"\: "\([[:digit:]]\+\.[[:digit:]]\+\.[[:digit:]]\+\)",$/\1/p' ~/repo/package.json`
       - run:
           name: Pushing tag
           command: git push --tags
