@@ -1,0 +1,119 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "$id": "https://github.com/samerziade/phishing-flooder.git",
+  "title": "Phishing Flooder",
+  "description": "A program used to flood data to phishing sites",
+
+  "type": "object",
+  "properties": {
+    "application": {
+      "description": "Application level configuration",
+      "type": "object",
+      "required": [ "count", "interval", "log" ],
+      "properties": {
+        "count": {
+          "description": "Number of requests to send",
+          "type": "integer",
+          "minimum": 0
+        },
+        "interval": {
+          "description": "The time to wait between requests",
+          "type": "integer",
+          "minimum": 0
+        },
+        "log": {
+          "description": "The log level",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 3
+        }
+      }
+    },
+
+    "connect": {
+      "description": "Connection settings",
+      "type": "object",
+      "required": [ "hostname", "port", "path" ],
+      "properties": {
+        "hostname": {
+          "description": "The host to connect to",
+          "type": "string",
+          "maxLength": 255
+        },
+        "port": {
+          "description": "Port number",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 65536
+        },
+        "path": {
+          "description": "The path to target",
+          "type": "string",
+          "maxLength": 2083
+        }
+      }
+    },
+
+    "http": {
+      "description": "HTTP definitions",
+      "type": "object",
+      "required": [ "method", "headers" ],
+      "properties": {
+        "method": {
+          "description": "HTTP method. Only GET, POST, PUT are allowed",
+          "type": "string",
+          "enum": [ "GET", "POST", "PUT" ]
+        },
+        "headers": {
+          "description": "HTTP headers",
+          "type": "object",
+          "patternProperties": {
+            "[a-zA-Z0-9\\-]+": {
+              "type": "string",
+              "maxLength": 4096
+            }
+          }
+        }
+      }
+    },
+
+    "schema": {
+      "description": "Payload definition",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [ "name" ],
+        "properties": {
+          "name": {
+            "description": "The field name to send in the payload",
+            "type": "string"
+          },
+          "type": {
+            "description": "The field type we are sending. Currently only supports 'string'",
+            "type": "string",
+            "enum": [ "string" ]
+          },
+          "min": {
+            "description": "Minimum string length",
+            "type": "integer",
+            "minimum": 0
+          },
+          "max": {
+            "description": "Maximum string length",
+            "type": "integer",
+            "minimum": 0
+          },
+          "set": {
+            "description": "The character set to use. Leave blank for everything.",
+            "type": "string"
+          },
+          "value": {
+            "description": "The payload value to send in case you need a custom one",
+            "type": "string"
+          }
+        }
+      },
+      "minItems": 0
+    }
+  }
+}
