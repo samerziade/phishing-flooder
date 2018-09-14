@@ -1,5 +1,5 @@
 import send from './Client'
-import { config } from './config'
+import { config } from './Config'
 import { Log } from './Log'
 
 const { count, interval } = config.application
