@@ -28,6 +28,25 @@ jobs:
             - v1-setup-{{ checksum "package.json" }}
       - run: npm run test:unit
 
+  e2e-test:
+    machine: true
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-setup-{{ checksum "package.json" }}
+      - run:
+          name: Starting test server
+          command: |
+            cd ~/repo/docker/test
+            docker-compose up -d
+      - run:
+          name: Verifying application output
+          command: npm run --silent start:app | diff -B -w docker/test/output.txt -
+          environment:
+            APP_CONFIG_FILE: /home/circleci/repo/docker/test/config.test.json
+
   build:
     docker:
       - image: circleci/node:latest
@@ -92,9 +111,13 @@ workflows:
       - unit-test:
           requires:
             - setup
+      - e2e-test:
+          requires:
+            - setup
       - build:
           requires:
             - unit-test
+            - e2e-test
       - tag:
           requires:
             - build
