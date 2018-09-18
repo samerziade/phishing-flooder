@@ -1,7 +1,8 @@
 let Config
+const ORIGINAL_CONFIG_FILE = process.env.APP_CONFIG_FILE
 
 beforeEach(() => {
-  process.env.APP_CONFIG_FILE = '../app.config.json'
+  process.env.APP_CONFIG_FILE = ORIGINAL_CONFIG_FILE
   Config = require('..')
 })
 
@@ -24,7 +25,7 @@ test('getConfig() SHOULD NOT throw an exception when fetching the configuration'
 
 test('getConfig() SHOULD throw an exception when validating the configuration', () => {
   Config.getConfigJson = () => {
-    const json = require(`../${process.env.APP_CONFIG_FILE}`)
+    const json = require(process.env.APP_CONFIG_FILE)
     json.application.count = 'fail'
 
     return json
