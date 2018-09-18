@@ -1,0 +1,36 @@
+{
+  "application": {
+    "count": 1,
+    "interval": 0,
+    "log": 0
+  },
+  "connect": {
+    "hostname": "localhost",
+    "port": 8080,
+    "path": "/index.php"
+  },
+  "http": {
+    "method": "POST",
+    "headers": {
+      "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+      "Accept-Language": "en",
+      "User-Agent": "E2E Test Agent"
+    }
+  },
+  "schema": [
+    {
+      "name": "username",
+      "type": "string",
+      "min": 8,
+      "max": 8,
+      "set": "a"
+    },
+    {
+      "name": "password",
+      "type": "string",
+      "min": 8,
+      "max": 8,
+      "set": "b"
+    }
+  ]
+}

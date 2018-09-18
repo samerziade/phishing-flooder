@@ -1,0 +1,11 @@
+================================================================================
+HTTP_CONNECTION	close
+HTTP_CONTENT_TYPE	application/x-www-form-urlencoded
+HTTP_CONTENT_LENGTH	37
+HTTP_USER_AGENT	E2E Test Agent
+HTTP_ACCEPT_LANGUAGE	en
+HTTP_ACCEPT	text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+HTTP_HOST	localhost
+username	aaaaaaaaa
+password	bbbbbbbbb
+================================================================================
