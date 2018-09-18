@@ -1,4 +1,4 @@
-import { config, LogLevel } from './config'
+import { config, LogLevel } from './Config'
 
 const { log } = config.application
 
