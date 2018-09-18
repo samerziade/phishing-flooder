@@ -14,8 +14,8 @@
   "main": "src/app.ts",
   "scripts": {
     "start": "APP_CONFIG_FILE=../app.config.json ts-node src/app.ts",
-    "test": "jest",
-    "test:watch": "jest --watch",
+    "test:unit": "jest",
+    "test:unit:watch": "jest --watch",
     "build": "npm run build:clean && npm run build:app",
     "build:clean": "rm -rf ./docker/app/build",
     "build:app": "tsc --lib ES2015 --outDir ./docker/app/build/ src/app.ts"
