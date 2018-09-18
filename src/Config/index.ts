@@ -47,12 +47,11 @@ export interface Config {
   schema: Array<Schema>
 }
 
-const validateEnvConfig = (): void => {
+export const validateEnvConfig = (): void => {
   const { env } = process
 
   if (!env.hasOwnProperty('APP_CONFIG_FILE') || !env.APP_CONFIG_FILE) {
-    console.error('Please set the APP_CONFIG_FILE environment variable')
-    process.exit(1)
+    throw new Error('Please set the APP_CONFIG_FILE environment variable')
   }
 }
 
@@ -67,19 +66,31 @@ const getZSchema = (): ZSchema => {
   return new ZSchema(options)
 }
 
-const getConfig = (): Config => {
+export const getConfigJson = (): Config => {
   const { env } = process
+  return require(env.APP_CONFIG_FILE)
+}
+
+export const validateConfigSchema = (config: Config): string => {
   const validator = getZSchema()
   const schema = require('./schema.definition.json')
-  const config: Config = require(env.APP_CONFIG_FILE)
 
-  if (!validator.validate(config, schema)) {
-    console.error(validator.getLastErrors())
-    process.exit(1)
+  return validator.validate(config, schema)
+    ? ''
+    : JSON.stringify(validator.getLastErrors())
+}
+
+export const getConfig = (): Config => {
+  const config = getConfigJson()
+  const validSchema = validateConfigSchema(config)
+
+  validateEnvConfig()
+
+  if (validSchema !== '') {
+    throw new Error(validSchema)
   }
 
   return config
 }
 
-validateEnvConfig()
 export const config = getConfig()
