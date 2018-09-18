@@ -44,6 +44,8 @@ jobs:
       - run:
           name: Verifying application output
           command: npm run --silent start:app | diff -B -w docker/test/output.txt -
+          environment:
+            APP_CONFIG_FILE: /home/circleci/repo/docker/test/test.config.json
 
   build:
     docker:
