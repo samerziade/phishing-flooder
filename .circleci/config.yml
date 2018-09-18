@@ -17,7 +17,7 @@ jobs:
             - node_modules
           key: v1-setup-{{ checksum "package.json" }}
 
-  test:
+  unit-test:
     docker:
       - image: circleci/node:latest
     working_directory: ~/repo
@@ -26,7 +26,7 @@ jobs:
       - restore_cache:
           keys:
             - v1-setup-{{ checksum "package.json" }}
-      - run: npm run test
+      - run: npm run test:unit
 
   build:
     docker:
@@ -89,12 +89,12 @@ workflows:
   setup-test-build-deploy:
     jobs:
       - setup
-      - test:
+      - unit-test:
           requires:
             - setup
       - build:
           requires:
-            - test
+            - unit-test
       - tag:
           requires:
             - build
