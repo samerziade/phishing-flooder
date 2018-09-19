@@ -1,5 +1,14 @@
+import * as path from 'path'
+
 let Config
-const ORIGINAL_CONFIG_FILE = process.env.APP_CONFIG_FILE
+
+const ORIGINAL_CONFIG_FILE = (() => {
+  const APP_ROOT = path.resolve(__dirname).replace('/src/Config/__tests__', '')
+
+  return process.env.APP_CONFIG_FILE
+    ? process.env.APP_CONFIG_FILE
+    : `${APP_ROOT}/src/app.config.json`
+})()
 
 beforeEach(() => {
   process.env.APP_CONFIG_FILE = ORIGINAL_CONFIG_FILE
