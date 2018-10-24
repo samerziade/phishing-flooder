@@ -1,8 +1,0 @@
-{
-    "editor.tabSize": 2,
-    "window.zoomLevel": 0,
-    "javascript.validate.enable": false,
-    "jest.autoEnable": true,
-    "jest.showCoverageOnLoad": true,
-    "jest.pathToJest": "node_modules/.bin/jest"
-}
