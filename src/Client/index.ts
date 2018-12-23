@@ -7,16 +7,10 @@ import { Config, Schema } from '../Config'
 
 type Request = http.ClientRequest
 
-const createRequest = (config: Config): Request => {
-  const options = {
-    ...config.connect,
-    method: config.http.method,
-  }
-
-  return config.connect.port === 443
-    ? https.request(options)
-    : http.request(options)
-}
+const createRequest = ({ connect, http: { method } }: Config): Request =>
+  connect.port === 443
+    ? https.request({ ...connect, method })
+    : http.request({ ...connect, method })
 
 const setupHeaders = (request: Request, config: Config): void => {
   const { headers } = config.http
