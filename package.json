@@ -19,7 +19,7 @@
     "test:unit:watch": "jest --watch",
     "build": "npm run build:clean && npm run build:app",
     "build:clean": "rm -rf ./docker/app/build",
-    "build:app": "tsc --lib ES2015 --outDir ./docker/app/build/ src/app.ts"
+    "build:app": "tsc --lib ES2017 --outDir ./docker/app/build/ src/app.ts"
   },
   "dependencies": {
     "z-schema": "^3.24.2"
