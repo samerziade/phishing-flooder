@@ -2,7 +2,7 @@
   "application": {
     "count": 1,
     "interval": 0,
-    "log": 0
+    "logLevel": "debug"
   },
   "connect": {
     "hostname": "localhost",
