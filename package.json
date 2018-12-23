@@ -15,8 +15,8 @@
   "scripts": {
     "start": "APP_CONFIG_FILE=../app.config.json npm run start:app",
     "start:app": "babel-node src/app.js",
-    "test:unit": "jest",
-    "test:unit:watch": "jest --watch",
+    "test": "jest",
+    "test:watch": "jest --watch",
     "build": "npm run build:clean && npm run build:app",
     "build:clean": "rm -rf ./docker/app/build",
     "build:app": "tsc --lib ES2017 --outDir ./docker/app/build/ src/app.ts"
