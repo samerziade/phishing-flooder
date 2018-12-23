@@ -4,7 +4,7 @@ const { log } = config.application
 
 export class Log {
   private static log = (lvl: LogLevel, msg: string): void => {
-    if (lvl !== LogLevel.OFF && lvl >= log) {
+    if (log !== LogLevel.OFF && lvl >= log) {
       const map = ['OFF', 'DEBUG', 'INFO', 'ERROR']
       const fn = map[lvl].toLowerCase()
 
