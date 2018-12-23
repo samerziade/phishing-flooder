@@ -6,11 +6,9 @@ const { count, interval } = config.application
 let counter = 0
 
 const timer = setInterval(() => {
-  counter++
-
   send(config).catch(err => Log.error(err))
 
-  if (count > 0 && count === counter) {
+  if (count > 0 && count === ++counter) {
     clearInterval(timer)
   }
 }, interval)
