@@ -4,8 +4,11 @@ import * as agents from './agents'
 import * as fields from './field'
 import * as querystring from 'querystring'
 import { Config, Schema } from '../Config'
+import { Log } from '../Log'
 
 type Request = http.ClientRequest
+
+let requestCounter = 0
 
 const createRequest = ({ connect, http: { method } }: Config): Request =>
   connect.port === 443
@@ -26,7 +29,7 @@ const setupHeaders = (request: Request, config: Config): void => {
   }
 }
 
-const setupRequestData = (request: Request, config: Config): void => {
+const setupRequestData = (request: Request, config: Config): string => {
   const reducer = (acc: Schema, curr: Schema) => ({
     ...acc,
     ...fields.getValue(curr),
@@ -39,24 +42,50 @@ const setupRequestData = (request: Request, config: Config): void => {
     request.setHeader('Content-Length', Buffer.byteLength(data).toString())
     request.setHeader('Content-Type', 'application/x-www-form-urlencoded')
 
-    request.write(data)
+    return data.trim()
   }
+
+  return ''
 }
 
-export default async (config: Config): Promise<string> => {
-  return new Promise<string>((resolve, reject) => {
+const printHeaders = (headers: http.OutgoingHttpHeaders) => {
+  const keys = Object.keys(headers)
+  const { length } = keys.reduce((a, b) => (a.length > b.length ? a : b))
+
+  keys.map(header => {
+    Log.debug(header.padEnd(length, ' ') + '\t' + headers[header])
+  })
+}
+
+export default (config: Config) =>
+  new Promise<string>((resolve, reject) => {
+    requestCounter++
+
     const request = createRequest(config)
     setupHeaders(request, config)
-    setupRequestData(request, config)
+
+    const requestData = setupRequestData(request, config)
+
+    if (requestData !== '') {
+      request.write(requestData)
+    }
 
     request.on('response', (res: http.IncomingMessage) => {
-      let data = ''
-      res.on('data', chunk => (data += chunk))
+      let responseData = ''
+      res.on('data', chunk => (responseData += chunk))
       res.on('error', err => reject(`RESPONSE - ${err.name} - ${err.message}`))
-      res.on('end', () => resolve(data))
+
+      res.on('end', () => {
+        if (requestData !== '') {
+          Log.info(`[${requestCounter}]: ${requestData}`)
+          printHeaders(request.getHeaders())
+          Log.debug(responseData)
+        }
+
+        resolve()
+      })
     })
 
     request.on('error', err => reject(`REQUEST - ${err.name} - ${err.message}`))
     request.end()
   })
-}
