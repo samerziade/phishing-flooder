@@ -118,6 +118,9 @@ workflows:
           requires:
             - unit-test
             - e2e-test
+          filters:
+            branches:
+              only: master
       - tag:
           requires:
             - build
