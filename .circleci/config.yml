@@ -29,7 +29,9 @@ jobs:
       - run: npm run test
 
   e2e-test:
-    machine: true
+    machine:
+      enabled: true
+      image: samerziadeh/docker-nodejs:latest
     working_directory: ~/repo
     steps:
       - checkout
