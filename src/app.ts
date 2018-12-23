@@ -5,12 +5,10 @@ import { Log } from './Log'
 const { count, interval } = config.application
 let counter = 0
 
-const timer = setInterval(async () => {
+const timer = setInterval(() => {
   counter++
 
-  send(config)
-    .then(data => Log.info(data))
-    .catch(err => Log.error(err))
+  send(config).catch(err => Log.error(err))
 
   if (count > 0 && count === counter) {
     clearInterval(timer)
