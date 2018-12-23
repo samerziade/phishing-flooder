@@ -8,7 +8,7 @@ export class Log {
       const map = ['OFF', 'DEBUG', 'INFO', 'ERROR']
       const fn = map[lvl].toLowerCase()
 
-      console[fn](msg)
+      console[fn](`[${map[lvl]}] ${msg}`)
     }
   }
 
