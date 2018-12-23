@@ -1,16 +1,18 @@
 import send from './Client'
 import { config } from './Config'
-import { Log } from './Log'
 
-const { count, interval } = config.application
+const log = require('loglevel')
+const { count, interval, logLevel } = config.application
 let processCounter = 0
 let errorCounter = 0
+
+log.setLevel(logLevel)
 
 const timer = setInterval(async () => {
   processCounter++
 
   if (errorCounter >= 19) {
-    Log.error(`${errorCounter} errors were encounted. Exiting.`)
+    log.error(`${errorCounter} errors were encounted. Exiting.`)
     clearInterval(timer)
   } else if (count > 0 && count === processCounter) {
     clearInterval(timer)
@@ -21,6 +23,6 @@ const timer = setInterval(async () => {
     errorCounter = 0
   } catch (err) {
     errorCounter++
-    Log.error(err)
+    log.error(err)
   }
 }, interval)

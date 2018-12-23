@@ -11,10 +11,10 @@
     "type": "git",
     "url": "https://github.com/samerziade/phishing-flooder.git"
   },
-  "main": "src/app.ts",
+  "main": "src/app.js",
   "scripts": {
     "start": "APP_CONFIG_FILE=../app.config.json npm run start:app",
-    "start:app": "ts-node src/app.ts",
+    "start:app": "babel-node src/app.js",
     "test:unit": "jest",
     "test:unit:watch": "jest --watch",
     "build": "npm run build:clean && npm run build:app",
@@ -22,44 +22,15 @@
     "build:app": "tsc --lib ES2017 --outDir ./docker/app/build/ src/app.ts"
   },
   "dependencies": {
+    "loglevel": "^1.6.1",
     "z-schema": "^3.24.2"
   },
   "devDependencies": {
-    "@types/jest": "^23.3.10",
-    "@types/node": "^10.12.18",
-    "@types/z-schema": "^3.16.32",
-    "jest": "^23.6.0",
-    "ts-jest": "^23.10.5",
-    "ts-node": "^7.0.1",
-    "typescript": "^3.2.2"
-  },
-  "prettier": {
-    "printWidth": 80,
-    "tabWidth": 2,
-    "tabs": false,
-    "semi": false,
-    "singleQuote": true,
-    "trailingComma": "es5",
-    "bracketSpacing": true,
-    "arrowParens": "avoid",
-    "parser": "typescript",
-    "requirePragma": false,
-    "useTabs": false
-  },
-  "jest": {
-    "transform": {
-      "^.+\\.ts$": "ts-jest"
-    },
-    "moduleFileExtensions": [
-      "ts",
-      "js"
-    ],
-    "collectCoverageFrom": [
-      "src/**/*.ts"
-    ],
-    "testMatch": [
-      "<rootDir>/src/**/__tests__/*.test.ts"
-    ],
-    "testEnvironment": "node"
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-es2015-destructuring": "^6.23.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0",
+    "jest": "^23.6.0"
   }
 }

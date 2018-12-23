@@ -1,0 +1,16 @@
+{
+  "transform": {
+    "^.+\\.ts$": "jest"
+  },
+  "moduleFileExtensions": [
+    "ts",
+    "js"
+  ],
+  "collectCoverageFrom": [
+    "src/**/*.ts"
+  ],
+  "testMatch": [
+    "<rootDir>/src/**/__tests__/*.test.ts"
+  ],
+  "testEnvironment": "node"
+}

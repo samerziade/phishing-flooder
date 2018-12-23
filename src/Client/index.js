@@ -3,19 +3,16 @@ import * as http from 'http'
 import * as agents from './agents'
 import * as fields from './field'
 import * as querystring from 'querystring'
-import { Config, Schema } from '../Config'
-import { Log } from '../Log'
 
-type Request = http.ClientRequest
-
+const log = require('loglevel')
 let requestCounter = 0
 
-const createRequest = ({ connect, http: { method } }: Config): Request =>
+const createRequest = ({ connect, http: { method } }) =>
   connect.port === 443
     ? https.request({ ...connect, method })
     : http.request({ ...connect, method })
 
-const setupHeaders = (request: Request, config: Config): void => {
+const setupHeaders = (request, config) => {
   const { headers } = config.http
 
   for (const key in headers) {
@@ -29,8 +26,8 @@ const setupHeaders = (request: Request, config: Config): void => {
   }
 }
 
-const setupRequestData = (request: Request, config: Config): string => {
-  const reducer = (acc: Schema, curr: Schema) => ({
+const setupRequestData = (request, config) => {
+  const reducer = (acc, curr) => ({
     ...acc,
     ...fields.getValue(curr),
   })
@@ -48,17 +45,17 @@ const setupRequestData = (request: Request, config: Config): string => {
   return ''
 }
 
-const printHeaders = (headers: http.OutgoingHttpHeaders) => {
+const printHeaders = headers => {
   const keys = Object.keys(headers)
   const { length } = keys.reduce((a, b) => (a.length > b.length ? a : b))
 
   keys.map(header => {
-    Log.debug(header.padEnd(length, ' ') + '\t' + headers[header])
+    log.debug(header.padEnd(length, ' ') + '\t' + headers[header])
   })
 }
 
-export default (config: Config) =>
-  new Promise<string>((resolve, reject) => {
+export default config =>
+  new Promise((resolve, reject) => {
     requestCounter++
 
     const request = createRequest(config)
@@ -70,16 +67,16 @@ export default (config: Config) =>
       request.write(requestData)
     }
 
-    request.on('response', (res: http.IncomingMessage) => {
+    request.on('response', res => {
       let responseData = ''
       res.on('data', chunk => (responseData += chunk))
       res.on('error', err => reject(`RESPONSE - ${err.name} - ${err.message}`))
 
       res.on('end', () => {
         if (requestData !== '') {
-          Log.info(`[${requestCounter}]: ${requestData}`)
+          log.info(`[${requestCounter}]: ${requestData}`)
           printHeaders(request.getHeaders())
-          Log.debug(responseData)
+          log.debug(responseData)
         }
 
         resolve()
