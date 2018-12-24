@@ -29,8 +29,7 @@ jobs:
       - run: npm run test
 
   e2e-test:
-    docker:
-      - image: samerziadeh/docker-nodejs:latest
+    machine: true
     working_directory: ~/repo
     steps:
       - checkout
@@ -44,7 +43,11 @@ jobs:
             docker-compose up -d
       - run:
           name: Verifying application output
-          command: npm run --silent start:app | diff -B -w docker/test/output.txt -
+          command: |
+            export NVM_DIR="/opt/circleci/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+            nvm install 11 && nvm use 11
+            npm run --silent start:app | diff -B -w docker/test/output.txt -
           environment:
             APP_CONFIG_FILE: /home/circleci/repo/docker/test/config.test.json
 
