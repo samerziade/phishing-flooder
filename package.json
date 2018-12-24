@@ -30,5 +30,28 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "jest": "^23.6.0"
+  },
+  "babel": {
+    "presets": [ "env" ],
+    "plugins": [ "transform-object-rest-spread" ]
+  },
+  "prettier": {
+    "printWidth": 80,
+    "tabWidth": 2,
+    "tabs": false,
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "es5",
+    "bracketSpacing": true,
+    "arrowParens": "avoid",
+    "parser": "typescript",
+    "requirePragma": false,
+    "useTabs": false
+  },
+  "jest": {
+    "moduleFileExtensions": [ "js" ],
+    "collectCoverageFrom": [ "src/**/*.js" ],
+    "testMatch": [ "<rootDir>/src/**/__tests__/*.test.js" ],
+    "testEnvironment": "node"
   }
 }
