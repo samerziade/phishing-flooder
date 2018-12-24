@@ -3,7 +3,7 @@ version: "3.7"
 services:
   app:
     image: phishing-flooder:latest
-    working_dir: /var/app
+    environment:
+      APP_CONFIG_FILE: /var/app/config.json
     volumes:
-      - ../../src/app.config.json:/var/app/app.config.json
-    command: node app.js
+      - ../../src/app.config.json:/var/app/config.json
