@@ -33,14 +33,10 @@ test('getConfig() SHOULD NOT throw an exception when fetching the configuration'
 })
 
 test('getConfig() SHOULD throw an exception when validating the configuration', () => {
-  Config.getConfigJson = () => {
-    const json = require(process.env.APP_CONFIG_FILE)
-    json.application.count = 'fail'
+  const config = require(process.env.APP_CONFIG_FILE)
+  config.application.count = 'fail'
 
-    return json
-  }
+  const result = Config.validateConfigSchema(config)
 
-  expect(() => {
-    Config.getConfig()
-  }).toThrow(Error)
+  expect(result).not.toEqual('')
 })

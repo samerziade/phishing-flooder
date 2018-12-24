@@ -25,27 +25,19 @@ Please refer to [config.ts](src/config.ts) for the type definitions of the confi
 | `interval` | `number` | The time to wait between requests                     |
 | `log`      | `number` | Numbers outlined in the next section                  |
 
-#### Log Levels
-
-| Value | Level |
-|-------|-------|
-| 0     | OFF   |
-| 1     | DEBUG |
-| 2     | INFO  |
-| 3     | ERROR |
-
 #### Test Web Server
 
 You can use the provided [docker-compose.yml](docker/test) file. The provided [config.example.json](config.example.json) file is configured to run using that server.
 
 ```shell
 cd docker/test
-docker-compose up
+docker-compose up -d
 ```
 
 ### Run
 
 ```shell
+npm install
 npm start
 ```
 

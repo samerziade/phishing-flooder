@@ -1,3 +1,10 @@
+[1]: username=aaaaaaaaa&password=bbbbbbbbb&standalone=&custom_value=Test%20Value
+host           	localhost
+accept         	text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+accept-language	en
+user-agent     	E2E Test Agent
+content-length 	75
+content-type   	application/x-www-form-urlencoded
 ================================================================================
 HTTP_CONNECTION	close
 HTTP_CONTENT_TYPE	application/x-www-form-urlencoded

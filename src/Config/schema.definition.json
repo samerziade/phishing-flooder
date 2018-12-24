@@ -9,7 +9,7 @@
     "application": {
       "description": "Application level configuration",
       "type": "object",
-      "required": [ "count", "interval", "log" ],
+      "required": [ "count", "interval", "logLevel" ],
       "properties": {
         "count": {
           "description": "Number of requests to send",
@@ -21,11 +21,10 @@
           "type": "integer",
           "minimum": 0
         },
-        "log": {
+        "logLevel": {
           "description": "The log level",
-          "type": "integer",
-          "minimum": 0,
-          "maximum": 3
+          "type": "string",
+          "enum": [ "trace", "debug", "info", "warn", "error", "silent" ]
         }
       }
     },

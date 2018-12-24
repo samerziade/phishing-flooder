@@ -26,7 +26,7 @@ jobs:
       - restore_cache:
           keys:
             - v1-setup-{{ checksum "package.json" }}
-      - run: npm run test:unit
+      - run: npm run test
 
   e2e-test:
     machine: true
@@ -43,9 +43,13 @@ jobs:
             docker-compose up -d
       - run:
           name: Verifying application output
-          command: npm run --silent start:app | diff -B -w docker/test/output.txt -
           environment:
             APP_CONFIG_FILE: /home/circleci/repo/docker/test/config.test.json
+          command: |
+            export NVM_DIR="/opt/circleci/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+            nvm install 11 && nvm use 11
+            npm run --silent start:app | diff -B -w docker/test/output.txt -
 
   build:
     docker:
@@ -118,6 +122,9 @@ workflows:
           requires:
             - unit-test
             - e2e-test
+          filters:
+            branches:
+              only: master
       - tag:
           requires:
             - build
