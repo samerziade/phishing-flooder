@@ -19,7 +19,7 @@
     "test:watch": "jest --watch",
     "build": "npm run build:clean && npm run build:app",
     "build:clean": "rm -rf ./docker/app/build",
-    "build:app": "mkdir docker/app/build && cp -r {src,package.json} docker/app/build && rm -fv docker/app/build/src/app.config.json"
+    "build:app": "mkdir docker/app/build && cp -r src docker/app/build && cp package.json docker/app/build && rm -fv docker/app/build/src/app.config.json"
   },
   "dependencies": {
     "loglevel": "^1.6.1",
