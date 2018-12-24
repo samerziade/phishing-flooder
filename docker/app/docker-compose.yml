@@ -2,7 +2,7 @@ version: "3.7"
 
 services:
   app:
-    image: samerziadeh/phishing-flooder:latest
+    image: phishing-flooder:latest
     working_dir: /var/app
     volumes:
       - ../../src/app.config.json:/var/app/app.config.json
